@@ -3,7 +3,7 @@
 The purpose of this file is to document coding styles to be
 used when contributing to mathcomp-analysis. It comes as an addition
 to mathcomp's [contribution
-guide](https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md).
+guide](https://github.com/math-comp/math-comp/blob/master/CONTRIBUTING.md)
 
 ## Policy for Pull Requests
 
