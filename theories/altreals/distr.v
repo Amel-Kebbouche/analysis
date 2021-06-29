@@ -37,6 +37,11 @@ Reserved Notation "\E_[ mu , A ] f" (at level 2, format "\E_[ mu ,  A ]  f").
 
 Local Notation "\`| f |" := (fun x => `|f x|) (at level 2).
 
+Lemma big_bool (R: zmodType) (F: bool -> R) : \sum_(j : bool) F j = F true + F false.
+Proof.
+by rewrite /index_enum !unlock //= addr0.
+Qed.
+
 (* -------------------------------------------------------------------- *)
 Section Distribution.
 Variables (R : realType) (T : choiceType).
@@ -331,9 +336,9 @@ Definition mflip (xt : R) :=
   fun b => if b then clamp xt else 1 - clamp xt.
 
 Lemma isd_mflip xt : isdistr (mflip xt).
-Proof. apply/isdistr_finP; split=> [b|].
+Proof. apply/isdistr_finP. split=> [b|].
 + by case: b; rewrite ?subr_ge0 cp01_clamp.
-+ by rewrite /index_enum !unlock /= addr0 addrCA subrr addr0.
+by rewrite big_bool/mflip addrCA subrr addr0.
 Qed.
 
 Definition dflip (xt : R) := locked (mkdistr (isd_mflip xt)).
